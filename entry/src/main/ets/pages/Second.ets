@@ -5,19 +5,19 @@ import promptAction from '@ohos.promptAction'
 
 class NetModel {
   public value: string
-  public inset: NetModel
 
-  constructor(value: string, inset: NetModel) {
+  constructor(value: string) {
     this.value = value
-    this.inset = inset
+
   }
 }
+
 //装饰器
 @Entry
 @Component
 struct Second {
   @State message: string = 'Hi there'
-  @State netModel: NetModel = new NetModel("我有用", null)
+  @State netModel: NetModel = new NetModel("我有用")
   @State count: number = 0
   content: String = ""
 
@@ -36,8 +36,8 @@ struct Second {
     router.back();
   }
 
-  topTextClick(): void {
-    this.netModel = new NetModel("我变了", null)
+  topTextClick = () => {
+    this.netModel = new NetModel("我变了" )
     this.message = "来了"
   }
 
@@ -47,18 +47,18 @@ struct Second {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(this.topTextClick.bind(this))
+          .onClick(this.topTextClick)
         Text(this.netModel.value)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-          .onClick(function(){
+          .onClick(() => {
             console.log("点击事件")
             this.message = "不行吗？"
             this.count += 1
             // State({
             //   message: "发生变更"
             // })
-          }.bind(this))
+          })
         // Divider()
         Button() {
           Text('Back' + this.count)
@@ -66,14 +66,25 @@ struct Second {
             .fontWeight(FontWeight.Bold)
         }
         .type(ButtonType.Capsule)
+        .stateStyles({
+          focused: {
+            .backgroundColor(Color.Pink)
+          },
+          pressed: {
+            .backgroundColor(Color.Black)
+          },
+          normal: {
+            .backgroundColor('#0D9FFB')
+          }
+        })
         .margin({
           top: 20
         })
-        .backgroundColor('#0D9FFB')
+
         .width('40%')
         .height('5%')
         // 返回按钮绑定onClick事件，点击按钮时返回到第一页
-        .onClick(this.onBackClick.bind(this))
+        .onClick(this.onBackClick)
         .width('100%')
       }
       .height('100%')

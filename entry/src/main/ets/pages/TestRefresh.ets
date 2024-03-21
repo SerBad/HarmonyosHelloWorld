@@ -18,6 +18,9 @@ struct RefreshExample {
       }
       .onStateChange((refreshStatus: RefreshStatus) => {
         console.info('Refresh onStatueChange state is ' + refreshStatus)
+        setTimeout(()=>{
+          this.isRefreshing = false
+        },2000)
       })
     }
   }

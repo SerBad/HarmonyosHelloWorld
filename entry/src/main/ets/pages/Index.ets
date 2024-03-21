@@ -84,16 +84,15 @@ struct Index {
               // 用户点击了“确认”按钮
               console.info('User confirmed the operation.');
               // 跳转到第二页
-              router.pushUrl({ url: 'pages/Second' }).then(() => {
+              router.pushUrl({ url: 'pages/Secondss' }).then(() => {
                 console.info('Succeeded in jumping to the second page.')
-              }).catch((err) => {
-                console.error(`Failed to jump to the second page.Code is ${err.code}, message is ${err.message}`)
+              }).catch((err: string) => {
+                console.error(`Failed to jump to the second page message is ${err}`)
               })
             }
-          }).catch((err) => {
-            console.error(`Invoke showDialog failed, code is ${err.code}, message is ${err.message}`);
+          }).catch((err: string) => {
+            console.error(`Failed to jump to the second page message is ${err}`)
           })
-
         })
       }
       .width('100%')
